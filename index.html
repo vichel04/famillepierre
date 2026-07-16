@@ -204,7 +204,6 @@
       <h2 class="ttl">Formulaire d'<span class="vio">adhésion</span></h2>
       <p style="color:var(--texte-m);font-size:.82rem;line-height:1.85;margin-top:.75rem;max-width:500px;">
         Remplissez ce formulaire pour rejoindre officiellement la Famille Pierre.
-        Vos données sont enregistrées de façon sécurisée dans notre base de données Google Sheets.
       </p>
     </div>
 
@@ -265,17 +264,13 @@
       <div class="fg" style="margin-bottom:1.1rem;">
         <label>Situation matrimoniale <span class="req">*</span></label>
         <div class="cb-group">
-          <label class="cb-item"><input type="radio" name="matr" value="Célibataire" onchange="toggleMaried(this)"><span>Célibataire</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Fiancé(e)" onchange="toggleMaried(this)"><span>Fiancé(e)</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Marié(e)" onchange="toggleMaried(this)"><span>Marié(e)</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Veuf(ve)" onchange="toggleMaried(this)"><span>Veuf(ve)</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Divorcé(e)" onchange="toggleMaried(this)"><span>Divorcé(e)</span></label>
+          <label class="cb-item"><input type="radio" name="matr" value="Célibataire"><span>Célibataire</span></label>
+          <label class="cb-item"><input type="radio" name="matr" value="Fiancé(e)"><span>Fiancé(e)</span></label>
+          <label class="cb-item"><input type="radio" name="matr" value="Marié(e)"><span>Marié(e)</span></label>
+          <label class="cb-item"><input type="radio" name="matr" value="Veuf(ve)"><span>Veuf(ve)</span></label>
+          <label class="cb-item"><input type="radio" name="matr" value="Divorcé(e)"><span>Divorcé(e)</span></label>
         </div>
       </div>
-      
-      <div class="sub-ttl">Enfants</div>
-      <div class="fg" style="max-width:180px;margin-bottom:1rem;"><label>Nombre d'enfants</label><input type="number" min="0" max="20" value="0" id="f_nb_enfants" ></div>
-      <div id="enfantsContainer"></div>
       <div class="form-nav"><button class="btn-form-prev" onclick="prevStep(3)">← Retour</button><button class="btn-form-next" onclick="nextStep(3)">Suivant →</button></div>
     </div>
 
@@ -337,10 +332,9 @@
       <div class="step-hd"><div class="step-badge">7</div><div><h3>Besoins & Prière</h3><p>Comment pouvons-nous vous accompagner ?</p></div></div>
       <div class="fg" style="margin-bottom:1.1rem;"><label>Sujets de prière</label><textarea id="f_priere" placeholder="Partagez vos sujets de prière (confidentiel — lu uniquement par votre responsable)..."></textarea></div>
       <div class="fg" style="margin-bottom:1.1rem;"><label>Désirez vous un enetretien avec le berger ?</label>
-        <div class="cb-group" style="flex-direction:column;gap:.65rem;margin-top:.4rem;">
-          <label class="cb-item"><input type="checkbox" id="acc_spi"><span>Oui</span></label>
-          <label class="cb-item"><input type="checkbox" id="acc_fam"><span>Non</span></label>
-
+        <div class="cb-group">
+          <label class="cb-item"><input type="radio" name="berger" value="Oui"><span>Oui</span></label>
+          <label class="cb-item"><input type="radio" name="berger" value="Non"><span>Non</span></label>
         </div>
       </div>
       <div class="fg" style="margin-bottom:1.1rem;"><label>Commentaires libres</label><textarea id="f_comment" placeholder="Tout ce que vous souhaitez partager à votre communauté..."></textarea></div>
