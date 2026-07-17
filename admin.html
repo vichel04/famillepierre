@@ -109,8 +109,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_GIEx8wKmMOBB6_LD4BA8oQ_SZW8S3Az";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const auth = new AuthManager(supabaseClient);
-const dashboard = new Dashboard(supabaseClient, 'membres');
-
+const dashboard = new Dashboard(supabaseClient, 'membres_famille_pierre');
 const el = {
   lockScreen: document.getElementById('lockScreen'),
   dashboard: document.getElementById('dashboard'),
