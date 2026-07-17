@@ -282,7 +282,7 @@ async function submitForm() {
 
 function showSuccess(){
   const sexe = g('f_sexe');
-  const prenom = g('f_postnom');
+  const prenom = g('f_prenom');
   const titre = sexe === 'Masculin' ? 'Tonton' : (sexe === 'Féminin' ? 'Tantine' : '');
   document.getElementById('successName').textContent = (titre ? titre + ' ' : '') + prenom;
 
