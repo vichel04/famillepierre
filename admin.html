@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Famille Pierre</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --violet:#6B21A8;--violet-d:#4C1778;--vert:#16A34A;--vert-l:#22C55E;
+  --blanc:#FFFFFF;--gris-f:#F9F9FB;--gris-d:#E4E0EF;
+  --texte:#1A1035;--texte-m:#5B5272;--texte-l:#9A90B4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:var(--gris-f);color:var(--texte);}
+
+#lockScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--violet-d);}
+.lock-box{background:var(--blanc);padding:3rem;border-radius:16px;text-align:center;max-width:340px;width:90%;}
+.lock-box h2{font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:1.5rem;}
+.lock-box input{width:100%;padding:.8rem 1rem;border:1.5px solid var(--gris-d);border-radius:10px;font-size:.9rem;margin-bottom:1rem;outline:none;}
+.lock-box input:focus{border-color:var(--violet);}
+.lock-box button{width:100%;padding:.8rem;background:var(--violet);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;}
+.lock-box button:hover{background:var(--violet-d);}
+.lock-box button:disabled{opacity:.5;cursor:not-allowed;}
+#lockError{color:#dc2626;font-size:.75rem;margin-top:.75rem;display:none;}
+
+#dashboard{display:none;padding:2rem;max-width:1200px;margin:0 auto;}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;}
+header h1{font-size:1.3rem;font-weight:900;text-transform:uppercase;}
+header h1 span{color:var(--violet);}
+.btn-logout{background:transparent;border:1.5px solid var(--gris-d);border-radius:100px;padding:.5rem 1.2rem;font-size:.7rem;font-weight:700;text-transform:uppercase;cursor:pointer;color:var(--texte-m);}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem;}
+.kpi{background:var(--blanc);border:1px solid var(--gris-d);border-radius:12px;padding:1.5rem;}
+.kpi strong{display:block;font-size:2rem;font-weight:900;color:var(--violet);}
+.kpi span{font-size:.62rem;color:var(--texte-l);text-transform:uppercase;letter-spacing:.05em;}
+
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+.chart-card{background:var(--blanc);border:1px solid var(--gris-d);border-radius:12px;padding:1.5rem;}
+.chart-card h3{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--texte-l);margin-bottom:1rem;}
+.chart-card canvas{max-height:220px;}
+
+.toolbar{display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap;}
+.toolbar input{flex:1;min-width:200px;padding:.6rem 1rem;border:1.5px solid var(--gris-d);border-radius:8px;font-size:.8rem;outline:none;}
+.toolbar input:focus{border-color:var(--violet);}
+.btn-export{background:var(--vert);color:#fff;border:none;border-radius:8px;padding:.6rem 1.2rem;font-size:.72rem;font-weight:700;text-transform:uppercase;cursor:pointer;}
+.btn-export:hover{background:#15803d;}
+
+.table-wrap{background:var(--blanc);border:1px solid var(--gris-d);border-radius:12px;overflow:auto;max-height:500px;}
+table{width:100%;border-collapse:collapse;font-size:.78rem;}
+th{position:sticky;top:0;background:var(--gris-f);text-align:left;padding:.7rem 1rem;font-size:.62rem;text-transform:uppercase;color:var(--texte-l);border-bottom:1px solid var(--gris-d);}
+td{padding:.7rem 1rem;border-bottom:1px solid var(--gris-f);color:var(--texte-m);white-space:nowrap;}
+tr:hover td{background:var(--gris-f);}
+#loadingMsg,#emptyMsg{text-align:center;padding:2rem;color:var(--texte-l);font-size:.8rem;}
+</style>
+</head>
+<body>
+
+<div id="lockScreen">
+  <div class="lock-box">
+    <h2>Accès Admin</h2>
+    <input type="email" id="emailInput" placeholder="Email">
+    <input type="password" id="pwdInput" placeholder="Mot de passe">
+    <button id="loginBtn">Se connecter</button>
+    <div id="lockError">Email ou mot de passe incorrect.</div>
+  </div>
+</div>
+
+<div id="dashboard">
+  <header>
+    <h1>FAMILLE <span>PIERRE</span> — Admin</h1>
+    <button class="btn-logout" id="logoutBtn">Déconnexion</button>
+  </header>
+
+  <div class="kpi-grid" id="kpiGrid"></div>
+
+  <div class="charts-row">
+    <div class="chart-card"><h3>Répartition par campus</h3><canvas id="chartCampus"></canvas></div>
+    <div class="chart-card"><h3>Répartition par sexe</h3><canvas id="chartSexe"></canvas></div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="searchInput" placeholder="Rechercher un membre (nom, téléphone, ville...)">
+    <button class="btn-export" id="exportBtn">⬇ Exporter en CSV</button>
+  </div>
+
+  <div class="table-wrap">
+    <div id="loadingMsg">Chargement...</div>
+    <div id="emptyMsg" style="display:none;">Aucun membre trouvé.</div>
+    <table id="dataTable" style="display:none;">
+      <thead>
+        <tr><th>Date</th><th>Nom</th><th>Prénom</th><th>Sexe</th><th>Téléphone</th><th>Ville</th><th>Campus</th><th>Ministère</th><th>Situation</th></tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="supabase.js"></script>
+<script src="chart.js"></script>
+<script src="auth.js"></script>
+<script src="dashboard.js"></script>
+<script>
+// ══════════════════════════════════
+// CONFIGURATION ET CÂBLAGE
+// ══════════════════════════════════
+const SUPABASE_URL = "https://ajwiojurraahleypksyk.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_GIEx8wKdeOBB6_LD4BA8oQ_SZW8S3Az";
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const auth = new AuthManager(supabaseClient);
+const dashboard = new Dashboard(supabaseClient, 'membres');
+
+const el = {
+  lockScreen: document.getElementById('lockScreen'),
+  dashboard: document.getElementById('dashboard'),
+  lockError: document.getElementById('lockError'),
+  loginBtn: document.getElementById('loginBtn'),
+  loadingMsg: document.getElementById('loadingMsg'),
+  emptyMsg: document.getElementById('emptyMsg'),
+  dataTable: document.getElementById('dataTable'),
+  kpiGrid: document.getElementById('kpiGrid'),
+  searchInput: document.getElementById('searchInput'),
+  tableBody: document.getElementById('tableBody')
+};
+
+auth.onLogin = async () => {
+  el.lockScreen.style.display = 'none';
+  el.dashboard.style.display = 'block';
+
+  const ok = await dashboard.load();
+  el.loadingMsg.style.display = 'none';
+
+  if (!ok || dashboard.isEmpty()) {
+    el.emptyMsg.style.display = 'block';
+    return;
+  }
+
+  el.dataTable.style.display = 'table';
+  dashboard.renderKPIs(el.kpiGrid);
+  dashboard.renderCharts(document.getElementById('chartCampus'), document.getElementById('chartSexe'));
+  dashboard.renderTable(el.tableBody);
+};
+
+auth.onLogout = () => location.reload();
+
+el.loginBtn.addEventListener('click', async () => {
+  el.loginBtn.disabled = true; el.loginBtn.textContent = 'Connexion...';
+  const result = await auth.login(
+    document.getElementById('emailInput').value.trim(),
+    document.getElementById('pwdInput').value
+  );
+  el.loginBtn.disabled = false; el.loginBtn.textContent = 'Se connecter';
+  if (!result.success) {
+    el.lockError.textContent = result.message;
+    el.lockError.style.display = 'block';
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', () => auth.logout());
+el.searchInput.addEventListener('input', () => dashboard.renderTable(el.tableBody, el.searchInput.value));
+document.getElementById('exportBtn').addEventListener('click', () => dashboard.exportCSV());
+
+auth.checkExistingSession();
+</script>
+</body>
+</html>
