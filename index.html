@@ -195,165 +195,191 @@
      FORMULAIRE D'ADHÉSION
 ══════════════════════════════════ -->
 <section class="adhesion" id="adhesion">
-  <div class="form-wrap">
-    <div style="margin-bottom:3rem;">
-      <div class="s-tag">Bienvenue parmi nous</div>
-      <h2 class="ttl">Formulaire d'<span class="vio">adhésion</span></h2>
-      <p style="color:var(--texte-m);font-size:.82rem;line-height:1.85;margin-top:.75rem;max-width:500px;">
-        Remplissez ce formulaire pour rejoindre officiellement la Famille Pierre.
-      </p>
-    </div>
 
-    <div class="prog-bar" id="progBar">
-      <div class="prog-track" id="progTrack" style="width:0%;"></div>
-      <div class="prog-step active" onclick="gotoStep(1)"><div class="prog-dot">1</div><div class="prog-lbl">Identité</div></div>
-      <div class="prog-step" onclick="gotoStep(2)"><div class="prog-dot">2</div><div class="prog-lbl">Adresse</div></div>
-      <div class="prog-step" onclick="gotoStep(3)"><div class="prog-dot">3</div><div class="prog-lbl">Famille</div></div>
-      <div class="prog-step" onclick="gotoStep(4)"><div class="prog-dot">4</div><div class="prog-lbl">Profession</div></div>
-      <div class="prog-step" onclick="gotoStep(5)"><div class="prog-dot">5</div><div class="prog-lbl">Spirituel</div></div>
-      <div class="prog-step" onclick="gotoStep(6)"><div class="prog-dot">6</div><div class="prog-lbl">ICC</div></div>
-      <div class="prog-step" onclick="gotoStep(7)"><div class="prog-dot">7</div><div class="prog-lbl">Besoins</div></div>
-    </div>
+<div class="form-container">
 
-    <!-- ÉTAPE 1 -->
-    <div class="f-step active" id="fs-1">
-      <div class="step-hd"><div class="step-badge">1</div><div><h3>Identité personnelle</h3><p>Vos informations de base</p></div></div>
-      <div class="fgap-row"><div class="fg"><label>Nom <span class="req">*</span></label><input type="text" id="f_nom" placeholder="Nom de famille">
-      </div>
-      <div class="fg"><label>Prénom <span class="req">*</span></label><input type="text" id="f_postnom" placeholder="Prénom"></div></div>
-      <div class="fgap-row">
-        <div class="fg"><label>Lieu de naissance <span class="req">*</span></label><input type="text" id="f_prenom" placeholder="Ville, Pays">
-        </div>
-        <div class="fg"><label>Sexe <span class="req">*</span></label><select id="f_sexe"><option value="">Sélectionner...</option><option>Masculin</option><option>Féminin</option></select></div>
-      </div>
-      <div class="fgap-row">
-        <div class="fg">
-    <label>Date d'anniversaire <span class="req">*</span></label>
-    <input
-        type="text"
-        id="f_dob"
-        name="anniversaire"
-        placeholder="JJ/MM"
-        pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$">
+<div class="form-header">
+
+<div class="logo-circle">
+✝
 </div>
-      
-      <div class="fg"><label>Nationalité <span class="req">*</span></label><input type="text" id="f_lieu_nais" placeholder="Ville, Pays"></div>
-    </div>
-      <div class="fgap-row">
-<div class="fg"><label>Téléphone <span class="req">*</span></label><input type="tel" id="f_tel" placeholder="+242 ..."></div></div>
-      <div class="form-nav"><span></span><button class="btn-form-next" onclick="nextStep(1)">Suivant →</button></div>
-    </div>
 
-    <!-- ÉTAPE 2 -->
-    <div class="f-step" id="fs-2">
-      <div class="step-hd"><div class="step-badge">2</div><div><h3>Adresse</h3><p>Votre lieu de résidence</p></div></div>
-      <div class="fgap-row"><div class="fg"><label>Pays <span class="req">*</span></label><select id="f_pays"><option value="">Sélectionner...</option><option>Congo Brazzaville</option><option>RDC</option><option>Angola</option><option>Autre</option></select></div>
-      <div class="fg"><label>Ville <span class="req">*</span></label><input type="text" id="f_ville" placeholder="Ex : Brazzaville"></div></div>
-      <div class="fgap-row"><div class="fg"><label>Commune</label><input type="text" id="f_commune" placeholder="Ex : Bacongo"></div>
-      <div class="fg"><label>Quartier</label><input type="text" id="f_quartier" placeholder="Ex : Moukoundzi-Ngouaka"></div></div>
-      <div class="fg" style="margin-bottom:1.1rem;"><label>Adresse complète</label><input type="text" id="f_adresse" placeholder="Numéro, avenue, références..."></div>
-      <div class="form-nav"><button class="btn-form-prev" onclick="prevStep(2)">← Retour</button><button class="btn-form-next" onclick="nextStep(2)">Suivant →</button></div>
-    </div>
+<h2>Bienvenue dans <span>Famille Pierre</span></h2>
 
-    <!-- ÉTAPE 3 -->
-    <div class="f-step" id="fs-3">
-      <div class="step-hd"><div class="step-badge">3</div><div><h3>Situation familiale</h3><p>Votre foyer</p></div></div>
-      <div class="fg" style="margin-bottom:1.1rem;">
-        <label>Situation matrimoniale <span class="req">*</span></label>
-        <div class="cb-group">
-          <label class="cb-item"><input type="radio" name="matr" value="Célibataire"><span>Célibataire</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Fiancé(e)"><span>Fiancé(e)</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Marié(e)"><span>Marié(e)</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Veuf(ve)"><span>Veuf(ve)</span></label>
-          <label class="cb-item"><input type="radio" name="matr" value="Divorcé(e)"><span>Divorcé(e)</span></label>
-        </div>
-      </div>
-      <div class="form-nav"><button class="btn-form-prev" onclick="prevStep(3)">← Retour</button><button class="btn-form-next" onclick="nextStep(3)">Suivant →</button></div>
-    </div>
+<p>
+Quelques informations nous permettront de mieux vous accueillir.
+</p>
 
-    <!-- ÉTAPE 4 -->
-    <div class="f-step" id="fs-4">
-      <div class="step-hd"><div class="step-badge">4</div><div><h3>Situation professionnelle</h3><p>Votre vie professionnelle</p></div></div>
-      <div class="fgap-row"><div class="fg"><label>Profession</label><input type="text" id="f_prof" placeholder="Ex : Médecin, Enseignant..."></div>
-      </div>
-      <div class="fg" style="margin-bottom:1.1rem;"><label>Statut professionnel</label>
-        <div class="cb-group">
-          <label class="cb-item"><input type="radio" name="statut_pro" value="Employé(e)"><span>Employé(e)</span></label>
-          <label class="cb-item"><input type="radio" name="statut_pro" value="Entrepreneur"><span>Entrepreneur</span></label>
-          <label class="cb-item"><input type="radio" name="statut_pro" value="Étudiant(e)"><span>Étudiant(e)</span></label>
-          <label class="cb-item"><input type="radio" name="statut_pro" value="Sans emploi"><span>Sans emploi</span></label>
-          <label class="cb-item"><input type="radio" name="statut_pro" value="Retraité(e)"><span>Retraité(e)</span></label>
-        </div>
-      </div>
-      <div class="form-nav"><button class="btn-form-prev" onclick="prevStep(4)">← Retour</button><button class="btn-form-next" onclick="nextStep(4)">Suivant →</button></div>
-    </div>
+</div>
 
-    <!-- ÉTAPE 5 -->
-    <div class="f-step" id="fs-5">
-      <div class="step-hd"><div class="step-badge">5</div><div><h3>Parcours spirituel</h3><p>Votre cheminement avec Dieu</p></div></div>
-      <div class="fgap-row">
-        <div class="fg"><label>Êtes-vous né(e) de nouveau ?</label><div class="cb-group"><label class="cb-item"><input type="radio" name="nv" value="Oui"><span>Oui</span></label><label class="cb-item"><input type="radio" name="nv" value="Non"><span>Non</span></label></div></div>
-        <div class="fg"><label>Date de conversion</label><input type="date" id="f_conv"></div>
-      </div>
-      <div class="fgap-row" style="margin-top:1.1rem;">
-        <div class="fg"><label>Êtes-vous baptisé(e) ?</label><div class="cb-group"><label class="cb-item"><input type="radio" name="bap" value="Oui"><span>Oui</span></label><label class="cb-item"><input type="radio" name="bap" value="Non"><span>Non</span></label></div></div>
-        <div class="fg"><label>Date du baptême</label><input type="date" id="f_bap_date"></div>
-      </div>
-      <div class="fg" style="margin-top:1.1rem;margin-bottom:1.1rem;"><label>Avez-vous reçu le Baptême du Saint-Esprit ?</label>
-        <div class="cb-group"><label class="cb-item"><input type="radio" name="esprit" value="Oui"><span>Oui</span></label><label class="cb-item"><input type="radio" name="esprit" value="Non"><span>Non</span></label><label class="cb-item"><input type="radio" name="esprit" value="Je ne sais pas"><span>Je ne sais pas</span></label></div>
-      </div>
-      <div class="form-nav"><button class="btn-form-prev" onclick="prevStep(5)">← Retour</button><button class="btn-form-next" onclick="nextStep(5)">Suivant →</button></div>
-    </div>
+<!-- Progress -->
 
-    <!-- ÉTAPE 6 -->
-    <div class="f-step" id="fs-6">
-      <div class="step-hd"><div class="step-badge">6</div>
-      <div><h3>Parcours ICC</h3><p>Votre intégration au ministère</p></div></div>
-      <div class="fgap-row"><div class="fg"><label>Date d'arrivée à ICC</label><input type="date" id="f_icc_date"></div><div class="fg"><label>Campus</label><select id="f_campus"><option value="">Choisir...</option><option>La Base </option><option>Talangaï</option><option>Mafouta</option><option>kinsoundi</option><option>Kombo</option><option>Matour</option></select></div></div>
-      <div class="fgap-row"><div class="fg"><label>Ministere fréquenté</label><select id="f_dept"><option value="">Choisir...</option><option>MAIPJ</option><option>MEBF</option><option>MEM</option><option>MIM</option><option>MOS</option><option>MCOM</option><option>Ministère de la Louange</option><option>Ministère de la Prière</option><option>MSOSH</option>
-        <option>MTP</option><option>MCEP</option><option>MCDM</option>
-        <option>MFI</option><option>MSI</option><option>MHI</option>
-        <option>MJI</option><option>Ministère des Soins Pastoraux</option>
-        <option>Ministère des Soins Pastoraux</option>
-        <option>MNM</option>
-         <option>MSTAR</option>
-           <option>MSA</option>
-             <option>MIJ</option>
-               <option>SG</option>
-      </select></div><div class="fg"><label>Departement</label><input type="text" id="f_cellule" placeholder="Nom de votre cellule"></div></div>
-      <div class="form-nav"><button class="btn-form-prev" onclick="prevStep(6)">← Retour</button><button class="btn-form-next" onclick="nextStep(6)">Suivant →</button></div>
-    </div>
+<div class="progress">
 
-    <!-- ÉTAPE 7 -->
-    <div class="f-step" id="fs-7">
-      <div class="step-hd"><div class="step-badge">7</div><div><h3>Besoins & Prière</h3><p>Comment pouvons-nous vous accompagner ?</p></div></div>
-      <div class="fg" style="margin-bottom:1.1rem;"><label>Sujets de prière</label><textarea id="f_priere" placeholder="Partagez vos sujets de prière (confidentiel — lu uniquement par votre responsable)..."></textarea></div>
-      <div class="fg" style="margin-bottom:1.1rem;"><label>Désirez vous un enetretien avec le berger ?</label>
-        <div class="cb-group">
-          <label class="cb-item"><input type="radio" name="berger" value="Oui"><span>Oui</span></label>
-          <label class="cb-item"><input type="radio" name="berger" value="Non"><span>Non</span></label>
-        </div>
-      </div>
-      <div class="fg" style="margin-bottom:1.1rem;"><label>Commentaires libres</label><textarea id="f_comment" placeholder="Tout ce que vous souhaitez partager à votre communauté..."></textarea></div>
+<div class="progress-bar">
 
-      <div id="sendingMsg">⏳ Envoi en cours, veuillez patienter...</div>
-      <div id="errorMsg"></div>
+<div class="progress-fill" id="progTrack"></div>
 
-      <div class="form-nav">
-        <button class="btn-form-prev" onclick="prevStep(7)">← Retour</button>
-        <button class="btn-form-next" id="submitBtn" style="background:linear-gradient(135deg,var(--violet),var(--vert));" onclick="submitForm()">✓ Rejoindre la famille</button>
-      </div>
-    </div>
+</div>
 
-    <!-- SUCCÈS -->
-    <div class="success-box" id="successBox">
-      <div class="suc-icon">✝</div>
-      <h3>Bienvenue dans la Famille Pierre !</h3>
-      <p>Votre inscription a bien été enregistrée dans notre base de données.<br>Un responsable vous contactera très prochainement pour vous accueillir.<br><br><em>« Ensemble, bâtissons des générations enracinées en Christ. »</em></p>
-    </div>
-  </div>
+<div class="progress-steps">
+
+<div class="step active">
+<div class="step-number">1</div>
+<span>Identité</span>
+</div>
+
+<div class="step">
+<div class="step-number">2</div>
+<span>Adresse</span>
+</div>
+
+<div class="step">
+<div class="step-number">3</div>
+<span>Famille</span>
+</div>
+
+<div class="step">
+<div class="step-number">4</div>
+<span>Profession</span>
+</div>
+
+<div class="step">
+<div class="step-number">5</div>
+<span>Spirituel</span>
+</div>
+
+<div class="step">
+<div class="step-number">6</div>
+<span>ICC</span>
+</div>
+
+<div class="step">
+<div class="step-number">7</div>
+<span>Validation</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- STEP 1 -->
+
+<div class="card-step active" id="fs-1">
+
+<h3>👤 Informations personnelles</h3>
+
+<div class="grid-2">
+
+<div class="input-group">
+
+<label>Nom *</label>
+
+<input
+type="text"
+id="f_nom"
+placeholder="Votre nom">
+
+</div>
+
+<div class="input-group">
+
+<label>Prénom *</label>
+
+<input
+type="text"
+id="f_prenom"
+placeholder="Votre prénom">
+
+</div>
+
+</div>
+
+<div class="grid-2">
+
+<div class="input-group">
+
+<label>Lieu de naissance</label>
+
+<input
+type="text"
+id="f_lieu_nais"
+placeholder="Ville, Pays">
+
+</div>
+
+<div class="input-group">
+
+<label>Nationalité</label>
+
+<input
+type="text"
+id="f_nationalite"
+placeholder="Nationalité">
+
+</div>
+
+</div>
+
+<div class="grid-2">
+
+<div class="input-group">
+
+<label>Sexe</label>
+
+<select id="f_sexe">
+
+<option value="">Choisir</option>
+
+<option>Masculin</option>
+
+<option>Féminin</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>Date anniversaire</label>
+
+<input
+type="text"
+id="f_dob"
+placeholder="JJ/MM">
+
+</div>
+
+</div>
+
+<div class="input-group">
+
+<label>Téléphone</label>
+
+<input
+type="tel"
+id="f_tel"
+placeholder="+242 06 000 0000">
+
+</div>
+
+<div class="buttons">
+
+<button
+class="btn-next"
+onclick="nextStep(1)">
+
+Continuer →
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
-
 <!-- ── FOOTER ── -->
 <footer>
   <div class="ft-inner">
@@ -385,7 +411,7 @@
     </div>
   </div>
 </footer>
-
+<script src="supabase.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
