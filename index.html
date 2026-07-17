@@ -216,34 +216,46 @@
     </div>
 
     <!-- ÉTAPE 1 -->
-    <div class="f-step active" id="fs-1">
-      <div class="step-hd"><div class="step-badge">1</div><div><h3>Identité personnelle</h3><p>Vos informations de base</p></div></div>
-      <div class="fgap-row"><div class="fg"><label>Nom <span class="req">*</span></label><input type="text" id="f_nom" placeholder="Nom de famille">
-      </div>
-      <div class="fg"><label>Prénom <span class="req">*</span></label><input type="text" id="f_prenom" placeholder="Prénom"></div></div>
-      <div class="fgap-row">
-        <div class="fg"><label>Lieu de naissance <span class="req">*</span></label><input type="text" id="f_lieu_nais" placeholder="Ville, Pays">
-        </div>
-        <div class="fg"><label>Sexe <span class="req">*</span></label><select id="f_sexe"><option value="">Sélectionner...</option><option>Masculin</option><option>Féminin</option></select></div>
-      </div>
-      <div class="fgap-row">
-        <div class="fg">
-    <label>Date d'anniversaire <span class="req">*</span></label>
-    <input
-        type="text"
-        id="f_dob"
-        name="anniversaire"
-        placeholder="JJ/MM"
-        pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$">
+   <div class="f-step active" id="fs-1">
+  <div class="step-hd"><div class="step-badge">1</div><div><h3>Identité personnelle</h3><p>Vos informations de base</p></div></div>
+  <div class="fgap-row"><div class="fg"><label>Nom <span class="req">*</span></label><input type="text" id="f_nom" placeholder="Nom de famille">
+  </div>
+  <div class="fg"><label>Prénom <span class="req">*</span></label><input type="text" id="f_prenom" placeholder="Prénom"></div></div>
+  <div class="fgap-row">
+    <div class="fg"><label>Lieu de naissance <span class="req">*</span></label><input type="text" id="f_lieu_nais" placeholder="Ville, Pays">
+    </div>
+    <div class="fg"><label>Sexe <span class="req">*</span></label><select id="f_sexe"><option value="">Sélectionner...</option><option>Masculin</option><option>Féminin</option></select></div>
+  </div>
+  <div class="fgap-row">
+    <div class="fg"><label>Tranche d'âge <span class="req">*</span></label>
+      <select id="f_tranche_age">
+        <option value="">Sélectionner...</option>
+        <option>18-24</option>
+        <option>25-30</option>
+        <option>31-35</option>
+        <option>36-42</option>
+        <option>43-50</option>
+        <option>50 et plus</option>
+      </select>
+    </div>
+    <div class="fg">
+<label>Date d'anniversaire <span class="req">*</span></label>
+<input
+    type="text"
+    id="f_dob"
+    name="anniversaire"
+    placeholder="JJ/MM"
+    pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$">
 </div>
-      
-      <div class="fg"><label>Nationalité <span class="req">*</span></label><input type="text" id="f_nationalite" placeholder="Ville, Pays"></div>
-    </div>
-      <div class="fgap-row">
-<div class="fg"><label>Téléphone <span class="req">*</span></label><input type="tel" id="f_tel" placeholder="+242 ..."></div></div>
-      <div class="form-nav"><span></span><button class="btn-form-next" onclick="nextStep(1)">Suivant →</button></div>
-    </div>
-
+  </div>
+  <div class="fgap-row">
+  <div class="fg"><label>Nationalité <span class="req">*</span></label><input type="text"
+     id="f_nationalite" placeholder="Ville, Pays" pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$">
+></div>
+  <div class="fg"><label>Téléphone <span class="req">*</span></label><input type="tel" id="f_tel" placeholder="+242 ..."></div>
+</div>
+  <div class="form-nav"><span></span><button class="btn-form-next" onclick="nextStep(1)">Suivant →</button></div>
+</div>
     <!-- ÉTAPE 2 -->
     <div class="f-step" id="fs-2">
       <div class="step-hd"><div class="step-badge">2</div><div><h3>Adresse</h3><p>Votre lieu de résidence</p></div></div>

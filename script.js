@@ -85,7 +85,10 @@ function validateStep(step) {
             !g("f_sexe") ||
             !g("f_dob") ||
             !g("f_nationalite") ||
-            !g("f_tel")
+            !g("f_tel") ||
+            !g("f_tranche_age") 
+            
+            
         ) {
 
             alert("Veuillez remplir tous les champs obligatoires.");
@@ -98,7 +101,10 @@ function validateStep(step) {
 
     if (step === 2) {
 
-        if (!g("f_pays") || !g("f_ville")) {
+        if (!g("f_pays") || 
+            !g("f_ville") || !g("f_commune") || !g("f_quartier") || !g("f_adresse")
+        
+        )   {
 
             alert("Veuillez compléter votre adresse.");
 
@@ -189,7 +195,7 @@ function collectData() {
         lieu_naissance: g("f_lieu_nais"),
 
         sexe: g("f_sexe"),
-
+        tranche_age:g('f_tranche_age'),
         date_anniversaire: g("f_dob"),
 
         nationalite: g("f_nationalite"),
