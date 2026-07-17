@@ -280,20 +280,14 @@ async function submitForm() {
 
 //========================================
 
-function showSuccess() {
+function showSuccess(){
+  const sexe = g('f_sexe');
+  const prenom = g('f_postnom');
+  const titre = sexe === 'Masculin' ? 'Tonton' : (sexe === 'Féminin' ? 'Tantine' : '');
+  document.getElementById('successName').textContent = (titre ? titre + ' ' : '') + prenom;
 
-    document
-        .querySelectorAll(".f-step")
-        .forEach(el => el.classList.remove("active"));
-
-    document.getElementById("progBar").style.display = "none";
-
-    document.getElementById("successBox").style.display = "block";
-
-    document
-        .getElementById("successBox")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
+  document.querySelectorAll('.f-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('progBar').style.display='none';
+  document.getElementById('successBox').style.display='block';
+  document.getElementById('successBox').scrollIntoView({behavior:'smooth',block:'center'});
 }
